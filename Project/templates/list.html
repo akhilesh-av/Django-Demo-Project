@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie List</title>
+</head>
+<body>
+  <h1>My Movie List   {{ visit }} time visited</h1>
+  {% include 'menu.html' %}
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Summary</th>
+        <th>Year</th>
+        <th>Poster</th>
+        <th>Status</th>
+        <th>Edit / Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for movie in movies       %}
+        <tr>
+          <td>{{ movie.title | upper }}</td>
+          <td>{{ movie.summary }}</td>
+          <td>{{ movie.year }}</td>
+          <td>{{ movie.poster }}</td>
+          <td>
+            {% if movie.success %}
+              Movie Was Successful
+            {% else %}
+              Movie Not Successful
+            {% endif %}
+          </td>
+          <td><a href="{% url 'edit' movie.id %}">Edit </a> /  <a href="{% url 'delete' movie.id %}">  Delete</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

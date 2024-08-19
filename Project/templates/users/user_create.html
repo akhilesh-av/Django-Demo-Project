@@ -1,0 +1,29 @@
+<p>User Create </p>
+{% include 'menu.html' %}
+
+
+<form method = "post"    enctype="multipart/form-data">
+
+
+    {% csrf_token %}
+  <p>
+
+    <label >Username : </label><input type="text" name="username">
+
+</p>
+<p><label >Password : </label><input type="password" name="password"></p>
+    <button type="submit">SignUp</button>
+
+    <p>
+      {% if user %}
+      New User Created with username {{ user.username }}
+      {% endif %}
+    </p>
+
+    <p>
+      {% if error_msg %}
+     Error {{ error_msg }}
+      {% endif %}
+    </p>
+
+</form>
